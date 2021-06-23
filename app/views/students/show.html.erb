@@ -1,0 +1,43 @@
+<div class="container mt-5">
+  
+  <div class="row">
+    <div class="col">
+      
+      <h1 class="display-6">
+      Welcome, <%= @student.name %>!
+      </h1>
+      <p class="lead">
+      Browse your profile or view your enrollments below:
+      </p>
+
+    </div>
+  </div>
+
+  <div class="row mb-4">
+    <div class="col-3 mt-5">
+
+      <div class="card" style="width: 18rem;">
+        <div class="card-header">
+          Your details
+        </div>
+        <div class="card-body" id="student-card-body">
+          <h5 class="card-title">Name: <%= @student.name %></h5>
+          <h6 class="card-subtitle mb-2 text-muted">Email: <%= @student.email %></h6>
+          <%= link_to "Update", edit_student_path(@student), class: "btn btn-warning btn-sm mt-2" %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="row mb-4">
+    <div class="col-3 mt-4">
+
+    <p class="lead">
+    Your enrollments:
+    </p>
+
+    </div>
+  </div>
+
+</div>

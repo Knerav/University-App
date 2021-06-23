@@ -1,7 +1,12 @@
 class StudentsController < ApplicationController
+  before_action :student_params, only: [:show, :edit]
 
   def index
     @students = Student.all
+  end
+
+  def show
+    
   end
 
   def new
@@ -34,6 +39,10 @@ class StudentsController < ApplicationController
 
   def student_whitelist
     params.require(:student).permit(:name, :email)
+  end
+
+  def student_params
+    @student = Student.find(params[:id])
   end
 
 end
