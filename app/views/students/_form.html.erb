@@ -15,7 +15,7 @@
             <%= f.label :email, class: "form-label" %>
             <%= f.email_field :email, class: "form-control", placeholder: "Enter your student email" %>
           </div>
-          <%= f.submit "Signup", class: "btn btn-warning text-dark mt-2" %>
+          <%= f.submit(@student.new_record? ? "Register" : "Update", class: "btn btn-warning mt-2") %>
         <% end %>
       </div>
 

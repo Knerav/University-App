@@ -1,5 +1,5 @@
 class StudentsController < ApplicationController
-  before_action :student_params, only: [:show, :edit]
+  before_action :student_params, only: [:show, :edit, :update]
 
   def index
     @students = Student.all
@@ -28,7 +28,12 @@ class StudentsController < ApplicationController
   end
 
   def update
-
+    if @student.update(student_whitelist)
+      flash[:success] = "You have successfully updated your profile"
+      redirect_to @student
+    else
+      render 'edit'
+    end
   end
 
   def destroy
