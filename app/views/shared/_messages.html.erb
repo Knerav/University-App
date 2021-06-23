@@ -1,0 +1,7 @@
+<div class="container mt-4" id="fade-out-target">
+  <% flash.each do |message_type, message_content| %>
+    <div class="alert alert-<%=message_type%>" role="alert">
+      <%= message_content %>
+    </div>
+  <% end %>
+</div>

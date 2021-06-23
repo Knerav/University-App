@@ -9,7 +9,13 @@ class StudentsController < ApplicationController
   end
 
   def create
-
+    @student = Student.new(student_whitelist)
+    if @student.save
+      flash[:success] = "You have successfully registered"
+      redirect_to root_path
+    else
+      render 'new'
+    end
   end
 
   def edit
@@ -22,6 +28,12 @@ class StudentsController < ApplicationController
 
   def destroy
 
+  end
+
+  private
+
+  def student_whitelist
+    params.require(:student).permit(:name, :email)
   end
 
 end

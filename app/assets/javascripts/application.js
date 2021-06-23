@@ -16,3 +16,7 @@
 //= require popper
 //= require bootstrap
 //= require_tree .
+
+$(document).on('turbolinks:load', function () {
+  $('#fade-out-target').fadeOut(4500);
+})
