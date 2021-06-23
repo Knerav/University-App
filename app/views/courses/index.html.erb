@@ -6,28 +6,34 @@
       <h1 class="display-6">
       Courses
       </h1>
-      
-      <p class="lead mb-4">
+      <p class="lead">
       Browse through the courses available to you.
       </p>
 
     </div>
   </div>
 
-  <div class="row mt-4">
-    <div class="col">
+  <div class="row">
+    <% @courses.each do |course| %>
+      <div class="col-3 mt-5">
 
-      <div class="card shadow" style="width: 18rem;">
-        <div class="card-body">
-          <h5 class="card-title">CS111</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Introduction to Computer Science</h6>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the content.</p>
-          <a class="btn btn-success btn-sm">Enroll</a>
-          <a class="btn btn-outline-secondary btn-sm">Info</a>
+        <div class="card shadow" style="width: 18rem;">
+          <div class="card-header">
+            <span class="badge rounded-pill bg-warning">CS</span>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title"><%= course.short_name %></h5>
+            <h6 class="card-subtitle mb-2 text-muted"><%= course.name %></h6>
+            <p class="card-text"><%= course.description %></p>
+          </div>
+          <div class="card-footer">
+            <a class="btn btn-success btn-sm">Enroll</a>
+            <a class="btn btn-outline-secondary btn-sm">Info</a>
+          </div>
         </div>
-      </div>
 
-    </div>
+      </div>
+    <% end %>
   </div>
 
 </div>
