@@ -4,31 +4,30 @@
     <div class="col">
       
       <h1 class="display-6">
-      Courses
+      Students
       </h1>
       <p class="lead">
-      Browse through the courses available to you.
+      Say hello to your fellow students!
       </p>
 
     </div>
   </div>
 
   <div class="row mb-4">
-    <% @courses.each do |course| %>
+    <% @students.each do |student| %>
       <div class="col-3 mt-5">
 
         <div class="card shadow" style="width: 18rem;">
           <div class="card-header">
-            <span class="badge rounded-pill bg-danger">SEMESTER-I</span>
+            <span class="badge rounded-pill bg-secondary">FY</span>
           </div>
           <div class="card-body">
-            <h5 class="card-title"><%= course.short_name %></h5>
-            <h6 class="card-subtitle mb-2 text-muted"><%= course.name %></h6>
-            <p class="card-text"><%= course.description %></p>
+            <h5 class="card-title"><%= student.name %></h5>
+            <h6 class="card-subtitle mb-2 text-muted"><%= student.email %></h6>
+            <p class="card-text">Course Enrollments:</p>
           </div>
           <div class="card-footer">
-            <a class="btn btn-success btn-sm">Enroll</a>
-            <a class="btn btn-outline-secondary btn-sm">Info</a>
+            <a class="btn btn-success btn-sm">View Profile</a>
           </div>
         </div>
 
