@@ -19,7 +19,15 @@
 
         <div class="card shadow" style="width: 18rem;">
           <div class="card-header">
-            <span class="badge rounded-pill bg-danger">SEMESTER-I</span>
+            <% course.categories.each do |category| %>
+              <% if category.name == "Computer Science" %>
+                <span class="badge rounded-pill bg-danger"><%= category.name %></span>
+              <% elsif category.name == "Psychology" %>
+                <span class="badge rounded-pill bg-warning"><%= category.name %></span>
+              <% else %>
+                <span class="badge rounded-pill bg-success"><%= category.name %></span>
+              <% end %>
+            <% end %>
           </div>
           <div class="card-body">
             <h5 class="card-title"><%= course.short_name %></h5>
@@ -27,8 +35,8 @@
             <p class="card-text"><%= course.description %></p>
           </div>
           <div class="card-footer">
-            <% if logged_in? %>
-              <a class="btn btn-success btn-sm">Enroll</a>
+            <% if logged_in? && !(current_user.courses.include?(course)) %>
+              <a><%= link_to "Enroll", course_enroll_path(course_id: course.id), method: :post, class: "btn btn-success btn-sm" %></a>
             <% end %>
             <a class="btn btn-outline-secondary btn-sm">Info</a>
           </div>

@@ -28,7 +28,7 @@
             <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Confirm your password" %>
           </div>
           
-          <%= f.submit(@student.new_record? ? "Register" : "Update", class: "btn btn-warning mt-2") %>
+          <%= f.submit(@student.new_record? ? "Register" : "Update", class: "btn mt-2", id: "login-btn-form") %>
         <% end %>
       </div>
 

@@ -3,12 +3,21 @@
   <div class="row">
     <div class="col">
       
-      <h1 class="display-6">
-      Welcome, <%= @student.name %>!
-      </h1>
-      <p class="lead">
-      Browse your profile or view your enrollments below:
-      </p>
+      <% if current_user != @student %>
+        <h1 class="display-6">
+          Say hello to <%= @student.name %>!
+        </h1>
+        <p class="lead">
+          View their enrollments or contact <%= @student.name %>
+        </p>
+      <% else %>
+        <h1 class="display-6">
+          Welcome, <%= @student.name %>!
+        </h1>
+        <p class="lead">
+          View your profile & enrollments below
+        </p>
+      <% end %>
 
     </div>
   </div>
@@ -35,11 +44,65 @@
   <div class="row mb-4">
     <div class="col-3 mt-4">
 
-    <p class="lead">
-    Your enrollments:
-    </p>
+    <% if current_user != @student %>
+      <p class="lead">
+        <%= @student.name %>'s enrollments:
+      </p>
+    <% else %>
+      <p class="lead">
+        Your enrollments:
+      </p>
+    <% end %>
 
     </div>
   </div>
+
+  <% if @student.courses.empty? %>
+
+  <div class="row mb-4">
+    <div class="col-3 mt-4">
+
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          No Courses
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <% else %>
+
+  <div class="row mb-4">
+    <% @student.courses.each do |course| %>
+      <div class="col-3 mt-4">
+          
+        <div class="card shadow" style="width: 18rem;">
+          <div class="card-header">
+            <% course.categories.each do |category| %>
+              <% if category.name == "Computer Science" %>
+                <span class="badge rounded-pill bg-danger"><%= category.name %></span>
+              <% elsif category.name == "Psychology" %>
+                <span class="badge rounded-pill bg-warning"><%= category.name %></span>
+              <% else %>
+                <span class="badge rounded-pill bg-success"><%= category.name %></span>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title"><%= course.short_name %></h5>
+            <h6 class="card-subtitle mb-2 text-muted"><%= course.name %></h6>
+            <p class="card-text"><%= course.description %></p>
+          </div>
+          <div class="card-footer">
+            <a class="btn btn-outline-secondary btn-sm">Info</a>
+          </div>
+        </div>
+
+      </div>
+    <% end %>
+  </div>
+
+  <% end %>
 
 </div>
