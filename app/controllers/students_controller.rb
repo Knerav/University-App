@@ -1,5 +1,7 @@
 class StudentsController < ApplicationController
+  skip_before_action :require_user, only: [:new, :create]
   before_action :student_params, only: [:show, :edit, :update]
+  before_action :require_same_student, only: [:edit, :update]
 
   def index
     @students = Student.all
@@ -50,4 +52,11 @@ class StudentsController < ApplicationController
     @student = Student.find(params[:id])
   end
 
+  def require_same_student
+    if current_user != @student
+      flash[:warning] = "The dean would like to meet you, edit your own profile!"
+      redirect_to student_path(current_user)
+    end
+  end
+  
 end

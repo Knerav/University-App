@@ -1,44 +1,47 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark" id="navbar">
   
   <div class="container mt-2 mb-2">
-    <%= link_to "UniversityPortal", root_path, class: "navbar-brand" %>
+    <%= image_tag("logo.png", id: "logo-display") %>
+    <%= link_to "IIRS Student Portal", root_path, class: "navbar-brand" %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarNav">
       
-      <ul class="navbar-nav">
+      <ul class="nav navbar-nav">
         
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="#">Courses</a>
+          <%= link_to "Courses", root_path, class: "nav-link" %> 
         </li>
         
-        <li class="nav-item">
-          <a class="nav-link" href="#">Enrollments</a>
-        </li>
-        
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Account
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><%= link_to "Account details", students_path, class: "dropdown-item" %></li>
-          </ul>
-        </li>
-        
+        <% if logged_in? %>
+          <li class="nav-item">
+            <%= link_to "Students", students_path, class: "nav-link" %>
+          </li>
+          
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Account
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><%= link_to "Account details", student_path(current_user), class: "dropdown-item" %></li>
+            </ul>
+          </li>
+        <% end %>
+
       </ul>
 
-      <div class="col-md-9 text-end">
-        <% if (logged_in?) %>
-          <%= link_to 'Logout', logout_path, method: :delete, class: "btn btn-outline-warning" %>
-        <% else %>
-          <%= link_to 'Login', login_path, class: "btn btn-outline-warning me-2" %>
-          <%= link_to 'Register', new_student_path, class: "btn btn-warning" %>
-        <% end %>
-      </div>
-
     </div>
+
+    <ul class="nav navbar-nav navbar-right">
+      <% if (logged_in?) %>
+        <li><%= link_to 'Logout', logout_path, method: :delete, class: "btn", id: "logout-btn" %></li>
+      <% else %>
+        <li><%= link_to 'Login', login_path, class: "btn me-2", id: "login-btn" %></li>
+        <li><%= link_to 'Register', new_student_path, class: "btn", id: "register-btn" %></li>
+      <% end %>
+    </ul>
 
   </div>
 

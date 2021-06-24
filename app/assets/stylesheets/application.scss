@@ -29,3 +29,22 @@ body {
 #student-card-body {
   height: 8rem;
 }
+
+/* logo styling */
+
+#logo-display {
+  height: 35px;
+  width: 35px;
+  margin-right: 10px;
+}
+
+/* header & footer */
+
+#navbar, #sticky-footer {
+  background: rgb(102, 102, 102);
+}
+
+#login-btn, #logout-btn, #register-btn {
+  background: #FFDE59;
+  color: rgb(29, 29, 29);
+}

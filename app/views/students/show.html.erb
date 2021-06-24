@@ -23,7 +23,9 @@
         <div class="card-body" id="student-card-body">
           <h5 class="card-title">Name: <%= @student.name %></h5>
           <h6 class="card-subtitle mb-2 text-muted">Email: <%= @student.email %></h6>
-          <%= link_to "Update", edit_student_path(@student), class: "btn btn-warning btn-sm mt-2" %>
+          <% if current_user == @student %>
+            <%= link_to "Update", edit_student_path(@student), class: "btn btn-warning btn-sm mt-2" %>
+          <% end %>
         </div>
       </div>
 
