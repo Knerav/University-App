@@ -7,14 +7,27 @@
 
       <div class="card shadow p-4">
         <%= form_for @student do |f| %>
+          
           <div class="mb-3">
             <%= f.label :name, class: "form-label" %>
             <%= f.text_field :name, class: "form-control", placeholder: "Enter a username" %>
           </div>
+          
           <div class="mb-3">
             <%= f.label :email, class: "form-label" %>
             <%= f.email_field :email, class: "form-control", placeholder: "Enter your student email" %>
           </div>
+
+          <div class="mb-3">
+            <%= f.label(@student.new_record? ? "password" : "password (optional)", class: "form-label") %>
+            <%= f.password_field :password, class: "form-control", placeholder: "Enter a password" %>
+          </div>
+
+          <div class="mb-3">
+            <%= f.label :password_confirmation, class: "form-label" %>
+            <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Confirm your password" %>
+          </div>
+          
           <%= f.submit(@student.new_record? ? "Register" : "Update", class: "btn btn-warning mt-2") %>
         <% end %>
       </div>

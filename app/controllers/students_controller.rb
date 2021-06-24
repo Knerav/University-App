@@ -43,7 +43,7 @@ class StudentsController < ApplicationController
   private
 
   def student_whitelist
-    params.require(:student).permit(:name, :email)
+    params.require(:student).permit(:name, :email, :password)
   end
 
   def student_params
