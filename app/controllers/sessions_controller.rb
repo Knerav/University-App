@@ -10,7 +10,11 @@ class SessionsController < ApplicationController
     if student && student.authenticate(params[:sessions][:password])
       session[:student_id] = student.id
       flash[:success] = "You have successfully logged in"
-      redirect_to student
+      if student.admin?
+        redirect_to root_path
+      else
+        redirect_to student
+      end
     else
       flash.now[:warning] = "Please enter valid credentials"
       render 'new'

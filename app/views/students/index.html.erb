@@ -15,23 +15,25 @@
 
   <div class="row mb-4">
     <% @students.each do |student| %>
-      <div class="col-3 mt-5">
+      <% if !(student.admin?) %>
+        <div class="col-3 mt-5">
 
-        <div class="card shadow" style="width: 18rem;">
-          <div class="card-header">
-            <span class="badge rounded-pill bg-secondary">FY</span>
+          <div class="card shadow" style="width: 18rem;">
+            <div class="card-header">
+              <span class="badge rounded-pill bg-secondary">FY</span>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title"><%= student.name %></h5>
+              <h6 class="card-subtitle mb-2 text-muted"><%= student.email %></h6>
+              <p class="card-text"></p>
+            </div>
+            <div class="card-footer">
+              <%= link_to "View profile", student_path(student), class: "btn btn-success btn-sm" %>
+            </div>
           </div>
-          <div class="card-body">
-            <h5 class="card-title"><%= student.name %></h5>
-            <h6 class="card-subtitle mb-2 text-muted"><%= student.email %></h6>
-            <p class="card-text"></p>
-          </div>
-          <div class="card-footer">
-            <%= link_to "View profile", student_path(student), class: "btn btn-success btn-sm" %>
-          </div>
+
         </div>
-
-      </div>
+      <% end %>
     <% end %>
   </div>
 

@@ -1,0 +1,84 @@
+<div class="container mt-5">
+  
+  <div class="row">
+    <div class="col">
+      
+      <h1 class="display-6">
+        Welcome, <%= @course.name %>!
+      </h1>
+      <p class="lead">
+        View the course details & students enrolled below
+      </p>
+
+    </div>
+  </div>
+
+  <div class="row mb-4">
+    <div class="col-3 mt-5">
+
+      <div class="card" style="width: 18rem;">
+        <div class="card-header">
+          Your details
+        </div>
+        <div class="card-body">
+          <h5 class="card-title"><%= @course.short_name %></h5>
+          <h6 class="card-subtitle mb-2 text-muted"><%= @course.name %></h6>
+          <p class="card-text"><%= @course.description %></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+ 
+  <div class="row mb-4">
+    <div class="col-3 mt-4">
+
+      <p class="lead">
+        Students enrolled in this course:
+      </p>
+
+    </div>
+  </div>
+
+  <% if @course.students.empty? %>
+
+    <div class="row mb-4">
+      <div class="col-3 mt-4">
+
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            No students enrolled
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  <% else %>
+
+    <div class="row mb-4">
+      <% @course.students.each do |student| %>
+        <div class="col-3 mt-4">
+
+          <div class="card shadow" style="width: 18rem;">
+            <div class="card-header">
+              <span class="badge rounded-pill bg-secondary">FY</span>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title"><%= student.name %></h5>
+              <h6 class="card-subtitle mb-2 text-muted"><%= student.email %></h6>
+              <p class="card-text"></p>
+            </div>
+            <div class="card-footer">
+              <%= link_to "View profile", student_path(student), class: "btn btn-success btn-sm" %>
+            </div>
+          </div>
+
+        </div>
+      <% end %>
+    </div>
+
+  <% end %>
+
+</div>

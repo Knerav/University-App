@@ -35,10 +35,13 @@
             <p class="card-text"><%= course.description %></p>
           </div>
           <div class="card-footer">
-            <% if logged_in? && !(current_user.courses.include?(course)) %>
+            <% if (logged_in? && !(current_user.courses.include?(course))) && !(current_user.admin?) %>
               <a><%= link_to "Enroll", course_enroll_path(course_id: course.id), method: :post, class: "btn btn-success btn-sm" %></a>
             <% end %>
-            <a class="btn btn-outline-secondary btn-sm">Info</a>
+            <a><%= link_to "Info", course_path(course), class: "btn btn-outline-secondary btn-sm" %></a>
+            <% if logged_in? && current_user.admin? %>
+              <a><%= link_to "Edit", edit_course_path(course), class: "btn btn-outline-secondary btn-sm" %></a>
+            <% end %>
           </div>
         </div>
 
