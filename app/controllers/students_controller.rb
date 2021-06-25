@@ -18,6 +18,7 @@ class StudentsController < ApplicationController
   def create
     @student = Student.new(student_whitelist)
     if @student.save
+      session[:student_id] = @student.id
       flash[:success] = "You have successfully registered"
       redirect_to root_path
     else
